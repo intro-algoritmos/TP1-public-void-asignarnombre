@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=CodificadorMensajes
+comment0.text=\n\ Clase\ CodificadorMensajes\:\ representa\ una\ componente\ capaz\ de\ cifrar\n\ un\ mensaje\ en\ formato\ texto.\ El\ mensaje\ a\ cifrar\ debe\ ser\ un\ objeto\n\ de\ tipo\ Mensaje\ (b\u00E1sicamente,\ una\ lista\ de\ strings,\ donde\ cada\ string\n\ representa\ una\ l\u00EDnea).\ Se\ asume\ que\ el\ mensaje\ es\ ASCII,\ es\ decir,\ todos\n\ los\ caracteres\ del\ mensaje\ tienen\ c\u00F3digos\ en\ el\ rango\ [0,\ 127].\n\ Si\ el\ mensaje\ a\ codificar\ tiene\ al\ menos\ una\ l\u00EDnea,\ el\n\ mecanismo\ de\ codificaci\u00F3n/cifrado\ calcula\ un\ c\u00F3digo\ de\ cifrado\ a\ partir\n\ de\ la\ misma.\ Caso\ contrario,\ el\ c\u00F3digo\ de\ cifrado\ es\ irrelevante.\n\ \n\ La\ codificaci\u00F3n\ utiliza\ una\ variante\ de\ Cifrado\ Cesar,\ en\ el\ cual\ el\ \n\ desplazamiento\ se\ basa\ en\ una\ c\u00F3digo\ de\ encripci\u00F3n\ m\u00FAltiple.\ V\u00E9ase\n\ Cifrado\ de\ Vigen\u00E8re\ para\ m\u00E1s\ detalles.\n\ \n\ @author\ N.\ Aguirre\n\ @version\ 0.1\n
+comment1.params=msg
+comment1.target=CodificadorMensajes(Mensaje)
+comment1.text=\n\ Constructor\ de\ la\ clase\ CodificadorMensajes.\n\ Inicializa\ el\ mensaje\ a\ encriptar/codificar\ con\ el\ par\u00E1metro\ pasado,\ e\n\ inicializa\ el\ mensaje\ codificado\ y\ el\ codigo\ de\ encripci\u00F3n\ en\ null.\n\ Precondici\u00F3n\:\ el\ mensaje\ msg\ no\ puede\ ser\ nulo\n\ @param\ msg\ es\ el\ mensaje\ a\ encriptar.\n
+comment2.params=
+comment2.target=void\ codificarMensaje()
+comment2.text=\n\ Encripta\ el\ mensaje.\ El\ mensaje\ no\ debe\ estar\ encriptado.\n\ Precondici\u00F3n\:\ El\ mensaje\ a\u00FAn\ no\ fue\ cifrado\ (i.e.,\ el\ campo\ mensajeCodificado\ es\ null).\n
+comment3.params=msg
+comment3.target=void\ cambiarMensaje(Mensaje)
+comment3.text=\n\ Cambia\ el\ mensaje\ a\ codificar.\n\ Precondici\u00F3n\:\ el\ nuevo\ mensaje\ no\ puede\ ser\ null.\n\ Postcondici\u00F3n\:\ el\ mensaje\ a\ codificar\ se\ actualiza,\ y\ se\ vuelve\ el\ objeto\n\ a\ un\ estado\ de\ "a\u00FAn\ no\ codificado".\n\ @param\ msg\ es\ el\ mensaje\ a\ codificar.\n
+comment4.params=
+comment4.target=Mensaje\ obtenerMensajeCodificado()
+comment4.text=\n\ Retorna\ el\ mensaje\ ya\ codificado/cifrado.\n\ Precondici\u00F3n\:\ el\ mensaje\ debe\ haber\ sido\ codificado\ previamente\ (i.e.,\ se\ debe\ haber\ llamado\ a\ codificarMensaje()).\n\ Postcondicion\:\ se\ retorna\ el\ mensaje\ cifrado/codificado.\n\ @return\ el\ mensaje\ cifrado.\n
+comment5.params=
+comment5.target=int[]\ obtenerCodigoEncripcion()
+comment5.text=\n\ Retorna\ el\ c\u00F3digo\ de\ cifrado.\n\ Precondici\u00F3n\:\ el\ mensaje\ debe\ haber\ sido\ codificado\ previamente\ (i.e.,\ se\ debe\ haber\ llamado\ a\ codificarMensaje()).\n\ Postcondicion\:\ se\ retorna\ el\ c\u00F3digo\ obtenido\ para\ el\ cifrado.\n\ @return\ el\ c\u00F3digo\ de\ cifrado.\n
+comment6.params=str
+comment6.target=int[]\ generarCodigoEncripcion(java.lang.String)
+comment6.text=\n\ Computa\ el\ c\u00F3digo\ de\ encripci\u00F3n\ correspondiente\ a\ una\ cadena\ str.\n\ Para\ calcular\ el\ c\u00F3digo\ de\ encripci\u00F3n\ se\ suman\ los\ c\u00F3digos\ ASCII\ de\ str,\ \n\ y\ se\ divide\ por\ 99991\ (el\ n\u00FAmero\ primo\ de\ 5\ d\u00EDgitos\ m\u00E1s\ grande).\ Los\ \n\ d\u00EDgitos\ del\ resto\ de\ la\ divisi\u00F3n\ constituyen\ el\ c\u00F3digo\ de\ encripci\u00F3n.\n\ Ej\:\ para\ la\ cadena\ "hola",\ los\ c\u00F3digos\ ascii\ de\ los\ caracteres\ son\n\ 104,\ 111,\ 108\ y\ 97,\ respectivamente.\ Su\ suma\ es\ 420,\ y\ 420\ %\ 99991\ es\n\ 420.\ Luego,\ el\ c\u00F3digo\ de\ inscripci\u00F3n\ es\ el\ arreglo\ {4,\ 2,\ 0}.\n
+comment7.params=str\ codigo
+comment7.target=java.lang.String\ encriptarCadena(java.lang.String,\ int[])
+comment7.text=\n\ Encripta\ una\ cadena,\ dado\ un\ c\u00F3digo\ num\u00E9rico.\ Se\ usan\ los\ d\u00EDgitos\ del\ c\u00F3digo\n\ para\ reemplazar\ cada\ caracter\ de\ la\ cadena\ por\ el\ caracter\ correspondiente\ a\ \n\ "trasladar"\ el\ mismo\ el\ n\u00FAmero\ de\ lugares\ que\ indica\ el\ c\u00F3digo.\ El\ c\u00F3digo\ tiene\n\ m\u00FAltiples\ valores\:\ se\ usa\ el\ primero\ para\ el\ primer\ caracter,\ el\ segundo\ para\ el\ segundo,\n\ y\ as\u00ED\ sucesivamente.\ Si\ se\ agota\ el\ c\u00F3digo,\ se\ vuelve\ al\ comienzo\ del\ mismo,\ hasta\n\ encriptar\ toda\ la\ cadena.\n\ Precondici\u00F3n\:\ tanto\ str\ como\ codigo\ no\ deben\ ser\ nulos.\n\ @param\ str\ es\ la\ cadena\ a\ encriptar\n\ @param\ codigo\ es\ el\ c\u00F3digo\ a\ utilizar\ para\ la\ encripci\u00F3n\n
+numComments=8

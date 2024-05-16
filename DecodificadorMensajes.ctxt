@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=DecodificadorMensajes
+comment0.text=\n\ Clase\ DecodificadorMensajes\:\ representa\ una\ componente\ capaz\ de\ descifrar\n\ un\ mensaje\ en\ formato\ texto,\ dado\ el\ mensaje\ y\ el\ c\u00F3digo\ usado\ para\ la\ \n\ encripci\u00F3n.\ El\ mensaje\ a\ descifrar/decodificar\ debe\ ser\ un\ objeto\n\ de\ tipo\ Mensaje\ (b\u00E1sicamente,\ una\ lista\ de\ strings,\ donde\ cada\ string\n\ representa\ una\ l\u00EDnea).\ Se\ asume\ que\ el\ mensaje\ es\ ASCII,\ es\ decir,\ todos\n\ los\ caracteres\ del\ mensaje\ tienen\ c\u00F3digos\ en\ el\ rango\ [0,\ 127].\n\ \n\ La\ codificaci\u00F3n/decodificaci\u00F3n\ utiliza\ una\ variante\ de\ Cifrado\ Cesar,\ en\ \n\ el\ cual\ el\ desplazamiento\ se\ basa\ en\ una\ c\u00F3digo\ de\ encripci\u00F3n\ m\u00FAltiple.\ \n\ V\u00E9ase\ Cifrado\ de\ Vigen\u00E8re\ para\ m\u00E1s\ detalles.\n\ \n\ @author\ N.\ Aguirre\n\ @version\ 0.1\n
+comment1.params=msg\ codigo
+comment1.target=DecodificadorMensajes(Mensaje,\ int[])
+comment1.text=\n\ Constructor\ de\ la\ clase\ DecodificadorMensajes.\n\ Inicializa\ el\ mensaje\ a\ desencriptar/decodificar\ con\ el\ par\u00E1metro\ pasado,\ \n\ junto\ con\ el\ c\u00F3digo\ de\ desencripci\u00F3n.\ \n\ Precondici\u00F3n\:\ tanto\ el\ mensaje\ msg\ como\ el\ c\u00F3digo\ codigo\ no\ pueden\ ser\ nulos\n\ @param\ msg\ es\ el\ mensaje\ a\ desencriptar.\n\ @param\ codigo\ es\ el\ c\u00F3digo\ de\ desencripci\u00F3n.\n
+comment2.params=
+comment2.target=void\ decodificarMensaje()
+comment2.text=\n\ Desencripta\ el\ mensaje.\ El\ mensaje\ no\ debe\ estar\ desencriptado.\n\ Precondici\u00F3n\:\ El\ mensaje\ a\u00FAn\ no\ fue\ descifrado\ (i.e.,\ el\ campo\ \n\ mensajeDecodificado\ es\ null).\n
+comment3.params=
+comment3.target=Mensaje\ obtenerMensajeDecodificado()
+comment3.text=\n\ Retorna\ el\ mensaje\ ya\ decodificado/descifrado.\n\ Precondici\u00F3n\:\ el\ mensaje\ debe\ haber\ sido\ decodificado\ previamente\ (i.e.,\ \n\ se\ debe\ haber\ llamado\ a\ decodificarMensaje()).\n\ Postcondicion\:\ se\ retorna\ el\ mensaje\ descifrado/decodificado.\n\ @return\ el\ mensaje\ descifrado.\n
+comment4.params=str\ codigo
+comment4.target=java.lang.String\ desencriptarCadena(java.lang.String,\ int[])
+comment4.text=\n\ Desencripta\ una\ cadena,\ dado\ un\ c\u00F3digo\ num\u00E9rico.\ Se\ usan\ los\ d\u00EDgitos\ del\ c\u00F3digo\n\ para\ reemplazar\ cada\ caracter\ de\ la\ cadena\ por\ el\ caracter\ correspondiente\ a\ \n\ "trasladar"\ el\ mismo\ el\ n\u00FAmero\ de\ lugares\ que\ indica\ el\ c\u00F3digo,\ en\ sentido\ inverso\n\ al\ de\ encripci\u00F3n\ (es\ decir,\ se\ resta\ el\ c\u00F3digo\ al\ caracter).\ El\ c\u00F3digo\ tiene\n\ m\u00FAltiples\ valores\:\ se\ usa\ el\ primero\ para\ el\ primer\ caracter,\ el\ segundo\ para\ el\ \n\ segundo,\ y\ as\u00ED\ sucesivamente.\ Si\ se\ agota\ el\ c\u00F3digo,\ se\ vuelve\ al\ comienzo\ del\ mismo,\ \n\ hasta\ desencriptar\ toda\ la\ cadena.\n\ Precondici\u00F3n\:\ tanto\ str\ como\ codigo\ no\ deben\ ser\ nulos.\n\ @param\ str\ es\ la\ cadena\ a\ desencriptar\n\ @param\ codigo\ es\ el\ c\u00F3digo\ a\ utilizar\ para\ la\ desencripci\u00F3n\n
+numComments=5
