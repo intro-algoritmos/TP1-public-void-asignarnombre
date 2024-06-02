@@ -10,26 +10,26 @@
  * La codificación/decodificación utiliza una variante de Cifrado Cesar, en 
  * el cual el desplazamiento se basa en una código de encripción múltiple. 
  * Véase Cifrado de Vigenère para más detalles.
- * 
- * @author N. Aguirre
- * @version 0.1
+ *
+ * @author Agustin Morosi, Pablo Zucchi, Ulises Leguizamon, JoaquinPelays, Bautista Rodriguez
+ * @version 02/06/2024
  */
 public class DecodificadorMensajes
 {
     /**
      * Mensaje codificado
      */
-    private Mensaje mensajeADecodificar;
+    private Mensaje mensajeADecodificar; 
     
     /**
      * Código a utilizar
      */
-    private int[] codigoEncripcion;
+    private int[] codigoEncripcion; 
     
     /**
      * Mensaje decodificado
      */
-    private Mensaje mensajeDecodificado;
+    private Mensaje mensajeDecodificado; 
 
     /**
      * Constructor de la clase DecodificadorMensajes.
@@ -39,15 +39,15 @@ public class DecodificadorMensajes
      * @param msg es el mensaje a desencriptar.
      * @param codigo es el código de desencripción.
      */
-    public DecodificadorMensajes(Mensaje msg, int[] codigo)
+    public DecodificadorMensajes(Mensaje msg, int[] codigo) 
     {
-        if (msg == null)
-            throw new IllegalArgumentException("Mensaje nulo");
+        if (msg == null) 
+            throw new IllegalArgumentException("Mensaje nulo"); 
         if (codigo == null)
-            throw new IllegalArgumentException("Código inválido.");
-        mensajeADecodificar = msg;
-        codigoEncripcion = codigo;
-        mensajeDecodificado = null;
+            throw new IllegalArgumentException("Código inválido."); 
+        mensajeADecodificar = msg; 
+        codigoEncripcion = codigo; 
+        mensajeDecodificado = null; 
     }
 
     /**
@@ -57,7 +57,15 @@ public class DecodificadorMensajes
      */
     public void decodificarMensaje() 
     {
-        // TODO: Implementar este método
+        if (mensajeDecodificado != null) { 
+            throw new IllegalStateException("El mensaje ya está decodificado");
+        }
+        mensajeDecodificado = new Mensaje(); 
+        for (int i = 0; i < mensajeADecodificar.cantLineas(); i++) { 
+            String curr = mensajeADecodificar.obtenerLinea(i); 
+            String currDecodificada = desencriptarCadena(curr, codigoEncripcion); 
+            mensajeDecodificado.agregarLinea(currDecodificada); 
+        }
     }
     
     /**
@@ -68,7 +76,7 @@ public class DecodificadorMensajes
      * @return el mensaje descifrado.
      */
     public Mensaje obtenerMensajeDecodificado() {
-        if (mensajeDecodificado == null)
+        if (mensajeDecodificado == null) 
             throw new IllegalStateException("Mensaje aún no decodificado");
         return mensajeDecodificado;
     }
@@ -85,10 +93,18 @@ public class DecodificadorMensajes
      * @param str es la cadena a desencriptar
      * @param codigo es el código a utilizar para la desencripción
      */
-    private String desencriptarCadena(String str, int[] codigo) {
-        // TODO: Implementar este método, sustituyendo la línea
-        // debajo con el código correspondiente a la funcionalidad
-        return null;
+    private String desencriptarCadena(String str, int[] codigo) { 
+        if (str == null) throw new IllegalArgumentException("Cadena nula");
+        if (codigo == null) throw new IllegalArgumentException("Código inválido");
+        String result = "";
+        int indiceCodigo = 0; 
+        for (int i = 0; i < str.length(); i++) {
+            char curr = str.charAt(i); 
+            char currDecodificado = (char) ((curr - codigo[indiceCodigo] + 128) % 128); 
+            result += currDecodificado; 
+            indiceCodigo = (indiceCodigo + 1) % codigo.length; 
+        }
+        return result;
     }
     
 }

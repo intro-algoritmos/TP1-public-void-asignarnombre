@@ -1,4 +1,3 @@
-
 /**
  * Clase CodificadorMensajes: representa una componente capaz de cifrar
  * un mensaje en formato texto. El mensaje a cifrar debe ser un objeto
@@ -13,15 +12,15 @@
  * desplazamiento se basa en una código de encripción múltiple. Véase
  * Cifrado de Vigenère para más detalles.
  * 
- * @author N. Aguirre
- * @version 0.1
+ * @author Agustin Morosi, Pablo Zucchi, Ulises Leguizamon, JoaquinPelays, Bautista Rodriguez
+ * @version 02/06/2024
  */
 public class CodificadorMensajes
 {
     /**
      * Mensaje a codificar
      */
-    private Mensaje mensajeACodificar;
+    private Mensaje mensajeACodificar; 
     
     /**
      * Mensaje codificado
@@ -31,7 +30,7 @@ public class CodificadorMensajes
     /**
      * Codigo para encripcion
      */
-    private int[] codigoEncripcion;
+    private int[] codigoEncripcion; 
     
     /**
      * Constructor de la clase CodificadorMensajes.
@@ -42,11 +41,11 @@ public class CodificadorMensajes
      */
     public CodificadorMensajes(Mensaje msg)
     {
-        if (msg == null) {
+        if (msg == null) { 
             throw new IllegalArgumentException("Mensaje es nulo");
         }
-        mensajeACodificar = msg;
-        mensajeCodificado = null;
+        mensajeACodificar = msg; 
+        mensajeCodificado = null; 
         codigoEncripcion = null;
     }
 
@@ -54,25 +53,24 @@ public class CodificadorMensajes
      * Encripta el mensaje. El mensaje no debe estar encriptado.
      * Precondición: El mensaje aún no fue cifrado (i.e., el campo mensajeCodificado es null).
      */
-    public void codificarMensaje() 
+    public void codificarMensaje()
     {
-        if (mensajeCodificado != null) {
-            // mensaje ya codificado
+        if (mensajeCodificado != null) { 
             throw new IllegalStateException("El mensaje ya está codificado");
         }
-        if (mensajeACodificar.cantLineas() == 0) {
-            mensajeCodificado = new Mensaje();
-            codigoEncripcion = new int[0];
+        if (mensajeACodificar.cantLineas() == 0) { 
+            mensajeCodificado = new Mensaje(); 
+            codigoEncripcion = new int[0]; 
         }
-        else {
-            mensajeCodificado = new Mensaje();
-            codigoEncripcion = generarCodigoEncripcion(mensajeACodificar.obtenerLinea(0));
+        else { 
+            mensajeCodificado = new Mensaje(); 
+            codigoEncripcion = generarCodigoEncripcion(mensajeACodificar.obtenerLinea(0)); 
             for (int i = 0; i < mensajeACodificar.cantLineas(); i++) {
-                String curr = mensajeACodificar.obtenerLinea(i);
-                String currCodificada = encriptarCadena(curr, codigoEncripcion);
-                mensajeCodificado.agregarLinea(currCodificada);
+                String curr = mensajeACodificar.obtenerLinea(i); 
+                String currCodificada = encriptarCadena(curr, codigoEncripcion); 
+                mensajeCodificado.agregarLinea(currCodificada); 
             }
-        }
+        }  
     }
     
     /**
@@ -82,12 +80,12 @@ public class CodificadorMensajes
      * a un estado de "aún no codificado".
      * @param msg es el mensaje a codificar.
      */
-    public void cambiarMensaje(Mensaje msg)
+    public void cambiarMensaje(Mensaje msg) 
     {
-        if (msg == null)
+        if (msg == null) 
             throw new IllegalArgumentException("Mensaje es nulo");
-        mensajeACodificar = msg;
-        mensajeCodificado = null;
+        mensajeACodificar = msg; 
+        mensajeCodificado = null; 
         codigoEncripcion = null;
     }
     
@@ -97,7 +95,7 @@ public class CodificadorMensajes
      * Postcondicion: se retorna el mensaje cifrado/codificado.
      * @return el mensaje cifrado.
      */
-    public Mensaje obtenerMensajeCodificado() {
+    public Mensaje obtenerMensajeCodificado() { 
         if (mensajeCodificado == null)
             throw new IllegalStateException("Mensaje aún no codificado");
         return mensajeCodificado;
@@ -109,8 +107,8 @@ public class CodificadorMensajes
      * Postcondicion: se retorna el código obtenido para el cifrado.
      * @return el código de cifrado.
      */
-    public int[] obtenerCodigoEncripcion() {
-        if (mensajeCodificado == null)
+    public int[] obtenerCodigoEncripcion() { 
+        if (mensajeCodificado == null) 
             throw new IllegalStateException("Mensaje aún no codificado");
         return codigoEncripcion;
     }
@@ -124,11 +122,20 @@ public class CodificadorMensajes
      * 104, 111, 108 y 97, respectivamente. Su suma es 420, y 420 % 99991 es
      * 420. Luego, el código de inscripción es el arreglo {4, 2, 0}.
      */
-    private int[] generarCodigoEncripcion(String str) 
-    {
-        // TODO: Implementar este método sustituyendo la línea
-        // debajo con el código de la funcionalidad.
-        return null;
+        
+    private int[] generarCodigoEncripcion(String str){ 
+        int sumaAscii = 0; 
+        for (int i = 0; i < str.length(); i++) {
+        sumaAscii += (int) str.charAt(i); //extrae el caracter actual y lo pasa a ascii
+        }
+        int resto = sumaAscii % 99991; 
+        String restoStr = Integer.toString(resto); // Convierte el resto que es un int a una cadena para separar sus dígitos
+        int[] codigoEncripcion = new int[restoStr.length()];
+        for (int i = 0; i < restoStr.length(); i++) {
+        codigoEncripcion[i] = Character.getNumericValue(restoStr.charAt(i));
+        // getNumericValue convierte el carácter actual a un entero
+        }
+        return codigoEncripcion;
     }
     
     /**
@@ -143,15 +150,16 @@ public class CodificadorMensajes
      * @param codigo es el código a utilizar para la encripción
      */
     private String encriptarCadena(String str, int[] codigo) {
-        if (str == null) throw new IllegalArgumentException("Cadena nula");
-        if (codigo == null) throw new IllegalArgumentException("Código inválido");
-        String result = "";
+        if (str == null) throw new IllegalArgumentException("Cadena nula"); 
+        if (codigo == null) throw new IllegalArgumentException("Código inválido"); 
+        String result = ""; 
         int indiceCodigo = 0;
         for (int i = 0; i < str.length(); i++) {
-            char curr = str.charAt(i);
+            char curr = str.charAt(i); 
             char currEncriptado = (char) ((curr + codigo[indiceCodigo]) % 128);
-            result = result + currEncriptado;
-            indiceCodigo = (indiceCodigo + 1) % (codigo.length);
+            result = result + currEncriptado; 
+            indiceCodigo = (indiceCodigo + 1) % (codigo.length); 
+            
         }
         return result;
     }
