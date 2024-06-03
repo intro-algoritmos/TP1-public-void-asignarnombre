@@ -56,10 +56,13 @@ public class Mensaje {
     public void agregarLinea(String linea) {
         if (linea == null) 
             throw new IllegalArgumentException("La línea a agregar no debe ser null.");
+            
         if (linea.length() > LONG_MAX_LINEA)
             throw new IllegalArgumentException("Longitud inválida. La línea no debe tener más de 80 caracteres.");
+            
         if (!esAscii(linea)) 
             throw new IllegalArgumentException("La línea a agregar contiene caracteres no ASCII.");
+            
         lineas.add(linea); 
     }
     
@@ -76,12 +79,16 @@ public class Mensaje {
     public void agregarLinea(int pos, String linea) {
         if (linea == null) 
             throw new IllegalArgumentException("La línea a agregar no debe ser null.");
+            
         if (linea.length() > LONG_MAX_LINEA) 
             throw new IllegalArgumentException("Longitud inválida. La línea no debe tener más de 80 caracteres.");
+            
         if (!esAscii(linea)) 
             throw new IllegalArgumentException("La línea a agregar contiene caracteres no ASCII.");
+            
         if (pos < 0 || pos > lineas.size()) 
             throw new IllegalArgumentException("Posición inválida. Debe estar entre 0 y " + lineas.size());
+            
         lineas.add(pos, linea); 
     }
     
@@ -93,6 +100,7 @@ public class Mensaje {
     public void eliminarLinea(int pos) {
         if (pos < 0 || pos >= cantLineas())
             throw new IllegalArgumentException("Posición inválida. No existe línea con esa posición.");
+            
         lineas.remove(pos); 
     }
     

@@ -68,10 +68,12 @@ public class CodificadorMensajes
             mensajeCodificado = new Mensaje(); 
             codigoEncripcion = generarCodigoEncripcion(mensajeACodificar.obtenerLinea(0)); 
             
-            for (int i = 0; i < mensajeACodificar.cantLineas(); i++) {
-                String curr = mensajeACodificar.obtenerLinea(i); 
-                String currCodificada = encriptarCadena(curr, codigoEncripcion); 
-                mensajeCodificado.agregarLinea(currCodificada); 
+            int i = 0;
+            while (i < mensajeACodificar.cantLineas()) {
+                String curr = mensajeACodificar.obtenerLinea(i);
+                String currCodificada = encriptarCadena(curr, codigoEncripcion);
+                mensajeCodificado.agregarLinea(currCodificada);
+                i++;
             }
         }  
     }
