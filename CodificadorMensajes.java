@@ -12,7 +12,7 @@
  * desplazamiento se basa en una código de encripción múltiple. Véase
  * Cifrado de Vigenère para más detalles.
  * 
- * @author Agustin Morosi, Pablo Zucchi, Ulises Leguizamon, JoaquinPelays, Bautista Rodriguez
+ * @author Agustin Morosi, Pablo Zucchi, Ulises Leguizamon, Joaquin Seguel, Bautista Rodriguez
  * @version 02/06/2024
  */
 public class CodificadorMensajes
@@ -58,13 +58,16 @@ public class CodificadorMensajes
         if (mensajeCodificado != null) { 
             throw new IllegalStateException("El mensaje ya está codificado");
         }
+        
         if (mensajeACodificar.cantLineas() == 0) { 
+            
             mensajeCodificado = new Mensaje(); 
             codigoEncripcion = new int[0]; 
         }
         else { 
             mensajeCodificado = new Mensaje(); 
             codigoEncripcion = generarCodigoEncripcion(mensajeACodificar.obtenerLinea(0)); 
+            
             for (int i = 0; i < mensajeACodificar.cantLineas(); i++) {
                 String curr = mensajeACodificar.obtenerLinea(i); 
                 String currCodificada = encriptarCadena(curr, codigoEncripcion); 
