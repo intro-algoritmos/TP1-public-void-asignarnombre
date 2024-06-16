@@ -145,10 +145,10 @@ public class Mensaje {
      */
     public boolean equals(Mensaje otro) {
         if (otro == null) {     
-        return false; 
+            throw new IllegalArgumentException("El mensaje a comparar no debe ser null."); 
         }
         if (this.cantLineas() != otro.cantLineas()) { //Se compara la cantidad de líneas en el objeto actual (this) con el otro
-        return false; 
+            return false; 
         }
         for (int i = 0; i < this.cantLineas(); i++) { 
             if (!this.obtenerLinea(i).equals(otro.obtenerLinea(i))) { 
